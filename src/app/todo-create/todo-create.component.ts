@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { todo } from '../models/todo';
 import { TodoServiceService } from '../services/todo-service.service';
 
 @Component({
@@ -8,20 +9,19 @@ import { TodoServiceService } from '../services/todo-service.service';
   styleUrls: ['./todo-create.component.css']
 })
 export class TodoCreateComponent implements OnInit {
-  todo:string[]=[]
-
   constructor(public TodoService:TodoServiceService) { }
-
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
   onCreateTodo(form:NgForm)
   {
     if(form.invalid){}
     else{
-    this.todo.push(form.value.todo);
-    this.TodoService.putTodo(form.value.todo);
+    this.TodoService.postTodo(form.value.todo,false).subscribe((data)=>{
+      console.log(data);
+      this.TodoService.getTodo().subscribe((data) => {
+        this.TodoService.putTodoInService(data);
+      });
+    });
    // alert("Todo Added");
     form.resetForm();}
   }
-
 }

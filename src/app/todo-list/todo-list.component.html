@@ -10,14 +10,15 @@
     for="todo_{{ i }}"
     *cdkVirtualFor="let ele of todo; index as i"
   >
-    <strong class="innerItem">{{ i + 1 }}. {{ ele }} </strong>
+    <strong class="innerItem">{{ i + 1 }}. {{ ele.todo }} </strong>
     <input
       class="innerItem"
       #checkbox
       type="checkbox"
       id="todo_{{ i }}"
       name="todo"
-      (click)="trigger(ele, checkbox.checked, i)"
+      (click)="trigger(ele.todo, checkbox.checked, i)"
+      [checked]="ele.isSelected"
     />
   </label>
 

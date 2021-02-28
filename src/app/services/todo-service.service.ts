@@ -1,47 +1,67 @@
 import { Injectable } from '@angular/core';
-import {Subject} from "rxjs";
+import { Observable,Subject} from "rxjs";
 import {selectedTodo} from "../models/selectedTodo";
+import{HttpClient} from "@angular/common/http";
+import{todo} from '../models/todo';
 @Injectable({
   providedIn: 'root'
 })
 export class TodoServiceService {
-  //main todo after creation stored in todo list component
-  private todo:string[]=[];
-  private subject= new Subject<string[]>();
+  private subject= new Subject<todo[]>();
+  //main todo after creation stored in todo list from backend
+  private todoList:todo[]=[];
 
-  //todos that are obtained from todo list after selection
-  selectedTodos:selectedTodo[]=[];
-  constructor(){ }
-
-  //used to get the todo to other components for using it
+  constructor(public http: HttpClient){ }
+  //used to get the create todo list to get the todo --createtodolist
   getTodo(){
-    return ([...this.todo]);
+    return this.http.get<todo[]>("http://localhost:3000/todo/todo");
   }
-  //so that it sends the todo everytime the subscribed components need it
-  getTodoAddListener(){
+  //used in todo list to get the whole todo list from service -- todo-list
+  getTodoFromService(){
     return this.subject.asObservable();
   }
 
-  //used in create todo list to put the todo created in service
-  putTodo(todo:string){
-    this.todo.push(todo);
-    this.subject.next([...this.todo]);
+  //used in create todo list to put the todo created in service --createtodolist
+  postTodo(obtainedtodo:string,isSelected:boolean): Observable<any> {
+    let obj={todo: obtainedtodo,isSelected:isSelected};
+    console.log("inside post todo")
+    return this.http.post("http://localhost:3000/todo/todo",obj)
+  }
+  //used in create todolist to put the whole todo list in service --create todolist
+  putTodoInService(data:todo[]){
+    console.log("inside post todo in service")
+    this.todoList=data;
+    this.subject.next([...this.todoList]);
+    console.log(this.todoList);
+  }
+  //For selected List
+  //todos that are obtained from todo list after selection
+  private selectedTodos:selectedTodo[]=[];
+  private subjectSelectedList= new Subject<selectedTodo[]>();
+  //this function gets the selected elements to todo-selected component
+  getSelectedItems(){
+    return this.http.get<selectedTodo[]>("http://localhost:3000/todo/selectedtodo");
+  }
+  getSelectedTodoFromService(){
+    return this.subjectSelectedList.asObservable();
   }
   //This function gets the selected item from the selectedlist
-  putSelectedItem(selectedItem:string, i:number){
-    this.selectedTodos.push({todo:selectedItem, indexId:i});
+  postSelectedItem(selectedItem:string,i:number){
+    return this.http.post("http://localhost:3000/todo/selectedtodo",{todo:selectedItem,index:i});
   }
   //this function removes the unselected number from the selectedlist
-  removeUnselectedItem(selectedItem:string, i:number){
-    this.selectedTodos.forEach((todos,index)=>{
-      if(todos.indexId===i){
-        this.selectedTodos.splice(index,1);
-      }
-    })
+  removeUnselectedItem(selectedItem:string,i:number){
+    return this.http.delete(`http://localhost:3000/todo/selectedtodo/${i}`);
   }
-
-  //this function gets the selected elements to todo-selected component
-  getSelectedItem(){
-    return this.selectedTodos;
+  //this gets called everytime a selected todo is either added or removed --todolist
+  postSelectedTodoInService(data:selectedTodo[]){
+    console.log("inside post todo in service")
+    this.selectedTodos=data;
+    this.subjectSelectedList.next([...this.selectedTodos]);
+    console.log(this.selectedTodos);
+  }
+  //for storing dragged elements new index in db
+  indexingDraggedTodoBackend(selectedTodos:selectedTodo[]){
+    return this.http.post("http://localhost:3000/todo/draggedtodo",selectedTodos);
   }
 }
