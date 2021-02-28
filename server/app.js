@@ -3,7 +3,7 @@ const Todoroutes= require('./Controller/routing');
 const app = express();
 const cors = require('cors')
 
-const port=process.env.PORT||8080;
+const port=process.env.PORT||3000;
 //adding cors
 app.use(cors());
 
