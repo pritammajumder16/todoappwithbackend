@@ -3,6 +3,7 @@ const Todoroutes= require('./Controller/routing');
 const app = express();
 const cors = require('cors')
 
+const port=process.env.PORT||8080;
 //adding cors
 app.use(cors());
 
@@ -10,6 +11,6 @@ app.use(cors());
 app.use('/todo',Todoroutes)
 
 
-app.listen(3000,()=>{
+app.listen(port,()=>{
   console.log("Todo Server Listening on port 3000")
 })

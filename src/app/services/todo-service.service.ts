@@ -14,7 +14,7 @@ export class TodoServiceService {
   constructor(public http: HttpClient){ }
   //used to get the create todo list to get the todo --createtodolist
   getTodo(){
-    return this.http.get<todo[]>("http://localhost:3000/todo/todo");
+    return this.http.get<todo[]>("todo/todo");
   }
   //used in todo list to get the whole todo list from service -- todo-list
   getTodoFromService(){
@@ -25,7 +25,7 @@ export class TodoServiceService {
   postTodo(obtainedtodo:string,isSelected:boolean): Observable<any> {
     let obj={todo: obtainedtodo,isSelected:isSelected};
     console.log("inside post todo")
-    return this.http.post("http://localhost:3000/todo/todo",obj)
+    return this.http.post("todo/todo",obj)
   }
   //used in create todolist to put the whole todo list in service --create todolist
   putTodoInService(data:todo[]){
@@ -40,18 +40,18 @@ export class TodoServiceService {
   private subjectSelectedList= new Subject<selectedTodo[]>();
   //this function gets the selected elements to todo-selected component
   getSelectedItems(){
-    return this.http.get<selectedTodo[]>("http://localhost:3000/todo/selectedtodo");
+    return this.http.get<selectedTodo[]>("todo/selectedtodo");
   }
   getSelectedTodoFromService(){
     return this.subjectSelectedList.asObservable();
   }
   //This function gets the selected item from the selectedlist
   postSelectedItem(selectedItem:string,i:number){
-    return this.http.post("http://localhost:3000/todo/selectedtodo",{todo:selectedItem,index:i});
+    return this.http.post("todo/selectedtodo",{todo:selectedItem,index:i});
   }
   //this function removes the unselected number from the selectedlist
   removeUnselectedItem(selectedItem:string,i:number){
-    return this.http.delete(`http://localhost:3000/todo/selectedtodo/${i}`);
+    return this.http.delete(`todo/selectedtodo/${i}`);
   }
   //this gets called everytime a selected todo is either added or removed --todolist
   postSelectedTodoInService(data:selectedTodo[]){
@@ -62,6 +62,6 @@ export class TodoServiceService {
   }
   //for storing dragged elements new index in db
   indexingDraggedTodoBackend(selectedTodos:selectedTodo[]){
-    return this.http.post("http://localhost:3000/todo/draggedtodo",selectedTodos);
+    return this.http.post("todo/draggedtodo",selectedTodos);
   }
 }
