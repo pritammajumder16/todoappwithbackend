@@ -1,0 +1,24 @@
+<mat-card>
+  <mat-card-title>Todos </mat-card-title>
+</mat-card>
+<cdk-virtual-scroll-viewport
+  class="outerBox"
+  itemSize="45px"
+>
+  <label
+    class="innerBox"
+    for="todo_{{ i }}"
+    *cdkVirtualFor="let ele of todo; index as i"
+  >
+    <strong class="innerItem">{{ i + 1 }}. {{ ele }} </strong>
+    <input
+      class="innerItem"
+      #checkbox
+      type="checkbox"
+      id="todo_{{ i }}"
+      name="todo"
+      (click)="trigger(ele, checkbox.checked, i)"
+    />
+  </label>
+
+</cdk-virtual-scroll-viewport>

@@ -1,0 +1,46 @@
+mat-card{
+  width: 90vw;
+  margin:auto;
+ height: 20vh;
+background: rgba(255, 255, 255, 0.062);
+}
+.theform{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.outerBox{
+  height: 100%;
+  width: 100%;
+}
+.formfield{
+  width: 90%;
+  display: block;
+  margin:auto;
+}
+button{
+  background-color: transparent;
+  border: 2px solid #4559ff;
+  color: #c125ff;
+  display: block;
+  font-size: 1.5rem;
+  font-family: 'Anton', sans-serif;
+  font-weight: 900;
+  width:90%;
+  margin:1rem auto;
+}
+mat-label{
+  color: #c125ff;
+}
+.mat-hint {
+  color:#c125ff ;
+}
+.mat-icon{
+  color:#c125ff;
+}
+input{
+  color: #c125ff;
+
+}
+

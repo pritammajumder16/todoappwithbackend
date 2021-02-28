@@ -1,0 +1,23 @@
+*{
+  height:100vh;
+}
+.outerBlock{
+
+  width: 100vw;
+  height:65vh;
+
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.innerBlock{
+  height: 100%;
+  width:45%;
+}
+
+.outsideAll{
+  background: url(../assets/image/51400-pen-pexels.1200w.tn.jpg);
+  background-size: cover;
+}

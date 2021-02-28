@@ -1,0 +1,25 @@
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
+<mat-card>
+  <form
+    action=""
+    class="theform"
+    #todoform="ngForm"
+    (submit)="onCreateTodo(todoform)"
+  >
+    <div class="outerBox">
+      <mat-form-field class="formfield" hideRequiredMarker>
+        <mat-label> Todo </mat-label>
+        <input matInput ngModel name="todo" type="text" required />
+
+        <mat-icon matSuffix>done</mat-icon>
+        <mat-hint align="start">Enter your <strong>Todo</strong></mat-hint>
+      </mat-form-field>
+    </div>
+    <div class="outerBox">
+      <button mat-raised-button ctype="submit">
+        CREATE TODO
+      </button>
+    </div>
+  </form>
+</mat-card>

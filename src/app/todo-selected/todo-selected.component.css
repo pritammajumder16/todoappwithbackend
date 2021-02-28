@@ -1,0 +1,36 @@
+mat-card{
+  display: flex;
+  background: rgba(255, 255, 255, 0.062);
+  justify-content: center;
+  align-items: center;
+  color: #c125ff;
+  height: 3rem;
+  border: 1px solid #4559ff;
+}
+
+.outerBox {
+  height: 405px;
+  border: 2px solid #4559ff;
+}
+.innerBox {
+  display: flex;
+  border: 1px solid #4559ff;
+  align-items: center;
+  color:#1426bb;
+  background: rgba(255, 255, 255, 0.432);
+  width: 100%;
+  height: 45px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.innerItem{
+  margin: 1rem;
+}
+/* Animate items as they're being sorted. */
+.cdk-drop-list-dragging .cdk-drag {
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+/* Animate an item that has been dropped. */
+.cdk-drag-animating {
+  transition: transform 300ms cubic-bezier(0, 0, 0.2, 1);
+}
