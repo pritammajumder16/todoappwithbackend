@@ -7,7 +7,7 @@
 [cdkDropListData]="selectedTodo"
 (cdkDropListDropped)="dropped($event)"
  class="outerBox" >
-  <li cdkDrag cdkDragLockAxis="y" class="innerBox" *ngFor="let ele of selectedTodo; index as i">
+  <li cdkDrag cdkDragLockAxis="y" matRipple  class="innerBox" *ngFor="let ele of selectedTodo; index as i">
    <strong class="innerItem">{{i+1}}. {{ ele.todo }}</strong>
   </li>
 

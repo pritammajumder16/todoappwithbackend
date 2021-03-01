@@ -5,14 +5,14 @@
   class="outerBox"
   itemSize="45px"
 >
-  <label
+  <label matRipple
     class="innerBox"
     for="todo_{{ i }}"
     *cdkVirtualFor="let ele of todo; index as i"
   >
     <strong class="innerItem">{{ i + 1 }}. {{ ele.todo }} </strong>
     <input
-      class="innerItem"
+      class="innerItem checkbox"
       #checkbox
       type="checkbox"
       id="todo_{{ i }}"

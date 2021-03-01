@@ -1,19 +1,18 @@
-*{
+* {
   height: 10vh;
   color: white;
 }
-.header{
-
+.header {
   display: flex;
   flex-direction: row;
-  align-items:flex-end;
+  align-items: flex-end;
 }
-p{
+p {
   height: 50%;
-  font-size:2.5rem;
-  font-family: 'DotGothic16', sans-serif;
-  font-weight:500;
-  background:linear-gradient(to right, #c125ff,#8319ad,#4559ff);
+  font-size: 2.5rem;
+  font-family: "DotGothic16", sans-serif;
+  font-weight: 500;
+  background: linear-gradient(to right, #c125ff, #8319ad, #4559ff);
   -webkit-text-fill-color: transparent;
   -webkit-background-clip: text;
 }
